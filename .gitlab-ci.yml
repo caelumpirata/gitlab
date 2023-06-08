@@ -1,0 +1,36 @@
+image: docker:20.10.16
+services:
+    - docker:20.10.16-dind
+
+
+variables:
+    DOCKER_DRIVER: overlay
+    APP_IMAGE: caelumpirata/edge:june8 
+
+
+stages:
+    - build
+    - test
+    - docker
+
+maven-build:
+    image: maven:3.8.5-openjdk-11
+    stage: build
+    script: "mvn clean package -B"
+    artifacts:
+        paths:
+        - target/*.jar
+
+maven-test:
+    image: maven:3.8.5-openjdk-11
+    stage: test
+    script: "mvn test"
+    artifacts:
+        paths:
+        - target/*.jar
+
+docker-build:
+    stage: docker
+    script:
+    - docker build -t $APP_IMAGE .
+    - docker run -d -p 9090:9090 $APP_IMAGE
