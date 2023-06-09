@@ -6,7 +6,7 @@ services:
 variables:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay
-    APP_IMAGE: caelumpirata/edge:june8 
+    APP_IMAGE: <USERNAME/IMAGE_NAME>:<TAG> 
     
 
 
@@ -49,13 +49,16 @@ docker-build:
     - docker build -t $APP_IMAGE .
     - docker push $APP_IMAGE
 
-# deploy:
-#     stage: deploy
-#     before_script:
-#         - chmod 400 $SSH_KEY 
-#     script:
-#       - ssh -o StrictHostKeyChecking=no -i $SSH_KEY root@65.2.150.79 "
-#         docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
-#         docker run -d -p 9090:9090 $IMAGE_NAME:$IMAGE_TAG"
+deploy:
+    stage: deploy
+    before_script:
+        - chmod 400 $SSH_KEY 
+    script:
+      - ssh -o StrictHostKeyChecking=no -i $SSH_KEY root@<INSTALCE_IP_ADDRESS> "
+        docker ps -aq | xargs docker stop | xargs docker rm &&
+        docker run -d -p 8080:9090 $APP_IMAGE "
+
+# add this inside "" if your repo is private to make it accessible using the credentials
+#docker login -u $REGISTRY_USER -p $REGISTRY_PASS  
 
 
