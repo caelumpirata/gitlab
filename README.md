@@ -32,6 +32,10 @@ Using spring-boot:build-image in Gitlab-ci.yaml Pipeline to create a docker imag
 ```
 https://stackoverflow.com/questions/71295726/using-spring-bootbuild-image-in-gitlab-ci-yaml-pipeline-to-create-a-docker-imag
 ```
+## Cannot connect to the Docker daemon at tcp://localhost:2375/. Is the docker daemon running. On GitLab
+```
+https://stackoverflow.com/questions/61105333/cannot-connect-to-the-docker-daemon-at-tcp-localhost2375-is-the-docker-daem
+```
 Use Docker to build Docker images 
 Use Docker-in-Docker
 You can now use docker in the job script. You should include the docker:20.10.16-dind service:
