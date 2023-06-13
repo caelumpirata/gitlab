@@ -17,3 +17,8 @@ gitlab-runner register  --url https://gitlab.com  --token <xxxxxxxxxxxxxxx>
 ```
 * choose docker 
 * choose default *ruby...* for docker image
+
+later-------------
+* edit you newly created runner, and tick only these..
+![image](https://github.com/caelumpirata/gitlab-springboot/assets/85424262/4d30e8f8-e734-488a-848a-86fc28d65223)
+
