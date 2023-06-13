@@ -56,28 +56,4 @@ You can now use docker in the job script. You should include the docker:20.10.16
 https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
 ```
 
-# Error during connect: Post http://docker:2375/v1.40/auth: dial tcp: lookup docker on 169.254.169.254:53: no such host
-```
-https://forum.gitlab.com/t/error-during-connect-post-http-docker-2375-v1-40-auth-dial-tcp-lookup-docker-on-169-254-169-254-no-such-host/28678/5
-```
-![image](https://github.com/caelumpirata/gitlab-springboot/assets/85424262/c2440bc9-e5b1-4bf9-95f7-9e35ce8ff683)
-![image](https://github.com/caelumpirata/gitlab-springboot/assets/85424262/553e5291-f209-4d72-9d88-e11ec4a9dbcc)
-<img width="335" alt="image" src="https://github.com/caelumpirata/gitlab-springboot/assets/85424262/83c92c6f-15f1-4424-875d-fdc4ac53829a">
-```
-docker-build:
-    stage: docker
-    image: docker:latest
-    services:
-      - docker:18.09.7-dind
-    tags:
-      - worker
-    variables:
-      DOCKER_HOST: tcp://docker:2375/
-      DOCKER_TLS_CERTDIR: ""
-    before_script:  
-      - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
-    script:
-      - docker build -t $APP_IMAGE .
-      - docker push $APP_IMAGE
 
-```
