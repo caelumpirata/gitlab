@@ -22,3 +22,9 @@ later-------------
 * edit you newly created runner, and tick only these..
 ![image](https://github.com/caelumpirata/gitlab-springboot/assets/85424262/4d30e8f8-e734-488a-848a-86fc28d65223)
 
+
+# Troubleshoot
+How do I delete/unregister a GitLab runner
+```
+How do I delete/unregister a GitLab runner
+```
