@@ -56,4 +56,11 @@ You can now use docker in the job script. You should include the docker:20.10.16
 https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
 ```
 
+## docker build exits successfully but no built image show up in the docker images
+```
+https://github.com/docker/cli/issues/2686
+```
+![image](https://github.com/caelumpirata/gitlab-springboot/assets/85424262/0809a5d2-0a46-480c-a367-5c82826ac1fe)
+
+
 
