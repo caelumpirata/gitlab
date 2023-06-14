@@ -62,5 +62,8 @@ https://github.com/docker/cli/issues/2686
 ```
 ![image](https://github.com/caelumpirata/gitlab-springboot/assets/85424262/0809a5d2-0a46-480c-a367-5c82826ac1fe)
 
-
+example:
+```
+docker build --load -t <source_image_name> .
+```
 
