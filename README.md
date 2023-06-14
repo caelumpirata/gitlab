@@ -70,4 +70,7 @@ docker build --load -t <source_image_name> .
 ```
 https://docs.docker.com/engine/reference/commandline/tag/
 ```
-
+example
+```
+docker tag <source_image_name>:<source_image_tag>  <username>/<target_image_name>:<target_image_tag>
+```
