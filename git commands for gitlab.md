@@ -1,6 +1,6 @@
 # Useful Git Commands to get started with GitLab
-![image](https://github.com/caelumpirata/gitlab-springboot/assets/85424262/cb02b3b7-fa3e-48be-839a-8fbfff2c2791)
 
+![248448894-cb02b3b7-fa3e-48be-839a-8fbfff2c2791](https://github.com/caelumpirata/gitlab-springboot/assets/85424262/41cb8dea-0b3f-4cce-ae40-5933b7d97e71)
 # Practical use
 Inside the empty directory,
 ```
