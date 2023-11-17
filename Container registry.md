@@ -26,6 +26,9 @@ docker-build:
 
 ## pull and deploy
 ```
+# ...
+# remaining codes here...
+
 deploy to production:
     stage: deploy
 
