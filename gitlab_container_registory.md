@@ -4,7 +4,7 @@ inclues codes for pushing image to gitlab registry and how to pull and use it wh
 * the project is private
 * login is mandatory to pull the image
 
-## build stage
+## build stage - single architecture(amd64)
 ```
 # ...
 # remaining codes here...
@@ -23,6 +23,20 @@ docker-build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker push $CI_REGISTRY/hn1674625/gitlab-registry-demo/$TARGET_IMAGE:$TARGET_TAG      # push to container registry
 ```
+## build stage - multi Architecture (amd64 + arm64)
+```
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker buildx create --use
+    
+    - docker buildx build --platform linux/amd64 -t $CI_REGISTRY/hn1674625/gitlab-registry-demo/$TARGET_IMAGE_AMD64:$TARGET_TAG --load .
+    - docker buildx build --platform linux/arm64 -t $CI_REGISTRY/hn1674625/gitlab-registry-demo/$TARGET_IMAGE_ARM64:$TARGET_TAG --load .
+
+    - docker images
+
+    - docker push $CI_REGISTRY/hn1674625/gitlab-registry-demo/$TARGET_IMAGE_AMD64:$TARGET_TAG
+    - docker push $CI_REGISTRY/hn1674625/gitlab-registry-demo/$TARGET_IMAGE_ARM64:$TARGET_TAG
+```
 
 ## pull and deploy
 ```
@@ -36,9 +50,9 @@ deploy to production:
         - chmod 400 $SSH_KEY 
     script:
     - |
-      ssh -o StrictHostKeyChecking=no -i $SSH_KEY root@[your_instance_ip_adddress]"
+      ssh -o StrictHostKeyChecking=no -i $SSH_KEY root@[instance_ip_address] "
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-      docker pull registry.gitlab.com/hn1674625/gitlab-registry-demo/demo:nov_17
-      docker run -d -p 9009:8080 registry.gitlab.com/hn1674625/gitlab-registry-demo/demo:nov_17
+      docker pull $CI_REGISTRY/hn1674625/gitlab-registry-demo/$TARGET_IMAGE_AMD64:$TARGET_TAG 
+      docker run -d -p 9009:8080 $CI_REGISTRY/hn1674625/gitlab-registry-demo/$TARGET_IMAGE_AMD64:$TARGET_TAG 
       "
 ```
