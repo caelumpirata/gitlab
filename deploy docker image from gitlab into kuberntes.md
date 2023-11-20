@@ -1,4 +1,4 @@
-# Docker image pull from GitLab in Kubernetes
+# Docker image pull from GitLab in Kubernetes - (kuberntes version 21.4)
 
 Deploy this *registry-credentials.yml* in the same namespace as of your application 
 ## How to get token?
