@@ -34,3 +34,20 @@ deploy to staging:
         helm install your_char_name -n staging
       "
 ```
+
+## Changes to make in the DEPLOYMENT.YAML file 
+make sure to add *imagePullSecrets:* with its name in the deployment file
+```
+..
+....
+ spec:
+      imagePullSecrets:
+        - name: registry-credentials
+      containers:
+        - name: my-app
+          image: registry.gitlab.com/my-app/demo
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+
+```
